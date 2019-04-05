@@ -4,9 +4,8 @@ const express = require("express")
 const app = express()
 const port = process.argv[2]
 
-app.get("/", (req, res) => res.send("Hi John"))
 
-app.get("/:delay", (req, res) => {
+app.get("/:delay?", (req, res) => {
   let delay = req.params.delay
 
   if (delay > 10000) {
@@ -27,7 +26,7 @@ app.get("/:delay/json/:name?", (req, res) => {
       name = "World"
     }
 
-    setTimeout(() => res.json({ delay: delay, greeting: `Hello ${name}` }), delay)
+    setTimeout(() => res.json({ delay: delay, greeting: `Hello ${name}`, name }), delay)
   }
 })
 
