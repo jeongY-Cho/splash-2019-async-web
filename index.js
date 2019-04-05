@@ -2,7 +2,7 @@ const express = require("express")
 
 
 const app = express()
-const port = 3000
+const port = process.argv[2]
 
 app.get("/", (req, res) => res.send("Hi John"))
 
@@ -31,4 +31,4 @@ app.get("/:delay/json/:name?", (req, res) => {
   }
 })
 
-app.listen(port, () => console.log("Example app listening on port"))
+app.listen(port, () => console.log("App listening on port"))
