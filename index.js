@@ -19,6 +19,15 @@ app.get("/", (req, res) => {
   }
 })
 
+app.get("/random", (req, res) => {
+
+  let name = req.query.name
+  let delay = Math.floor(Math.random() * 5000)
+
+  setTimeout(() => res.json({ delay: delay, greeting: `Hello ${name}`, name }), delay)
+
+})
+
 app.get("/:delay", (req, res) => {
   let delay = req.params.delay
 
