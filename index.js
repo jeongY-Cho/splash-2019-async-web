@@ -2,16 +2,20 @@ const express = require("express")
 
 
 const app = express()
-const port = process.argv[2]
+const PORT = process.argv[2] || 3000
 
 
 app.get("/", (req, res) => {
+
+
   let delay = req.query.delay
+  let name = req.query.name
+
 
   if (delay > 10000) {
-    res.send("Delay can't exeed 10 seconds")
+    res.json({ error: "Delay can't exeed 10 seconds" })
   } else {
-    setTimeout(() => res.send(`This reponse was sent with a delay of ${delay / 1000} seconds`), delay)
+    setTimeout(() => res.json({ delay: delay, greeting: `Hello ${name}` }), delay)
   }
 })
 
@@ -40,4 +44,4 @@ app.get("/:delay/json/:name?", (req, res) => {
   }
 })
 
-app.listen(port, () => console.log("App listening on port"))
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`))
